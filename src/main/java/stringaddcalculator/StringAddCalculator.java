@@ -14,14 +14,8 @@ public class StringAddCalculator {
         }
 
         List<Integer> numbers = Spliter.splitInput(input);
-        int result = 0;
-        for(int num : numbers){
-            result += num;
-        }
-        return result;
+        return numbers.stream().mapToInt(s->s).sum();
     }
-
-
 
     private static boolean isNumber(String s){
         try{
