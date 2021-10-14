@@ -1,6 +1,5 @@
 package stringaddcalculator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,32 +20,27 @@ public class Spliter {
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
         m.find();
         String customDelimiter = m.group(1);
-        Stream<String> resultStream = Arrays.stream(m.group(2).split(customDelimiter));
-        if(hasNegativeNumber(resultStream) | hasNotNumber(resultStream)){
+        if(hasNegativeNumber(Arrays.stream(m.group(2).split(customDelimiter)))){
             throw new RuntimeException();
         }
-        List<Integer> result = resultStream.map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        List<Integer> result = Arrays.stream(m.group(2).split(customDelimiter)).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
         return result;
     }
 
     private static List<Integer> splitByDefaultDelimiter(String input) throws RuntimeException {
         List<Integer> result;
-        Stream<String> resultStream = Arrays.stream(input.split(",|:"));
-        if(hasNegativeNumber(resultStream) | hasNotNumber(resultStream)){
+        if(hasNegativeNumber(Arrays.stream(input.split(",|:")))){
             throw new RuntimeException();
         }
-        result = resultStream.map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        result = Arrays.stream(input.split(",|:")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
         return result;
     }
 
     private static boolean hasNegativeNumber(Stream<String> st){
-        return st.map(s->Integer.parseInt(s)).anyMatch(s->s<0);
+        return st.anyMatch(s->(!isInteger(s) || Integer.parseInt(s)<0));
     }
 
-    private static boolean hasNotNumber(Stream<String> st){
 
-        return st.anyMatch(s->!isInteger(s));
-    }
 
     private static boolean isInteger(String s){
         if(s.isEmpty()){
