@@ -29,12 +29,11 @@ public class SplitterTest {
     void noDelimiter(){
         assertThatThrownBy(()->Splitter.splitNames("user1 user2 user3")).isInstanceOf(RuntimeException.class).hasMessage("구분자가 올바르지 않습니다.");
     }
+
     @Test
     @DisplayName("구분자가 쉼표가 아닐 경우")
     void delimiterIsNotComma(){
         assertThatThrownBy(()->Splitter.splitNames("user1;user2;user3")).isInstanceOf(RuntimeException.class).hasMessage("구분자가 올바르지 않습니다.");
     }
-
-
 
 }
