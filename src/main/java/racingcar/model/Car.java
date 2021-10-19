@@ -3,6 +3,7 @@ package racingcar.model;
 public class Car {
     private String name;
     private int distance = 0;
+    private static final int MOVE_NUMBER = 4;
 
     public Car(String s) {
         name = s;
@@ -16,7 +17,7 @@ public class Car {
     }
 
     private boolean decideToMove(int number) {
-        return number >= 4;
+        return number >= MOVE_NUMBER;
     }
 
     public void move(int num) {
