@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
@@ -12,7 +14,7 @@ public class CarsTest {
 
     @BeforeEach
     void beforeEach() {
-        CarNames names = new CarNames("coco,dodo,bobo");
+        CarNames names = new CarNames(Arrays.asList("coco,dodo,bobo"));
         cars = new Cars(names);
     }
 

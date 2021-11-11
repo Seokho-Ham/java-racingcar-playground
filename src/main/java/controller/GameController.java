@@ -1,13 +1,16 @@
 package controller;
 
 import domain.Car;
-import domain.CarNames;
 import domain.Cars;
 import domain.interfaces.InputView;
 import domain.interfaces.OutputView;
 import domain.service.RacingCarService;
 import view.ConsoleInputView;
 import view.ConsoleOutputView;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class GameController {
@@ -16,23 +19,22 @@ public class GameController {
 
     public void run() {
 
-
         ov.printMsg("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         String carNamesInput = iv.getInput();
-        while (!CarNames.validateCarNames(carNamesInput)) {
+        while (!validateCarNamesInput(carNamesInput)) {
             ov.printMsg("입력값의 길이가 5 이상이거나 공백을 포함하고 있습니다.");
             carNamesInput = iv.getInput();
         }
 
         ov.printMsg("시도할 회수는 몇회인가요?");
         String countsInput = iv.getInput();
-        while(!validateNumber(countsInput)){
+        while(!validateNumberInput(countsInput)){
             ov.printMsg("숫자를 입력해주세요");
             countsInput = iv.getInput();;
         }
 
-        CarNames carNames = new CarNames(carNamesInput);
         int counts = Integer.parseInt(countsInput);
+        List<String> carNames =  Arrays.stream(carNamesInput.split(",")).collect(Collectors.toList());
 
         RacingCarService service = new RacingCarService(carNames);
         for (int i = 0; i < counts; i++) {
@@ -41,7 +43,6 @@ public class GameController {
         }
 
         ov.printResult(service.findWinners() + "가 최종 우승했습니다.");
-
     }
 
     private String makeResult(Cars cars) {
@@ -53,7 +54,7 @@ public class GameController {
     }
 
 
-    private boolean validateNumber(String num) {
+    private boolean validateNumberInput(String num) {
         if (num.length() == 0) {
             return false;
         }
@@ -64,4 +65,15 @@ public class GameController {
         }
         return true;
     }
+
+    private boolean validateCarNamesInput(String names) {
+        List<String> namesList = Arrays.stream(names.split(",")).collect(Collectors.toList());
+        for (String name : namesList) {
+            if ((name.length() > 5 || name.contains(" ")) || name.length() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

@@ -8,13 +8,16 @@ public class Cars {
     private List<Car> cars;
 
     public Cars(CarNames names) {
-        this.cars = names.getNames().stream().map(s->new Car(s)).collect(Collectors.toList());
+        this.cars = names.getCarNames().stream().map(s->new Car(s)).collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
         return this.cars;
     }
 
+    public int getCountOfCars(){
+        return cars.size();
+    }
 
     public void moveCars(RandomNumbers randomNumbers) {
         for(int i=0; i<this.cars.size(); i++){

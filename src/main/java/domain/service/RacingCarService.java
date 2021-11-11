@@ -13,10 +13,10 @@ public class RacingCarService {
     private final Cars cars;
     private final int carsCount;
 
-    public RacingCarService(CarNames names) throws IllegalArgumentException {
-        this.cars = new Cars(names);
-        this.carsCount = names.getNames().size();
-
+    public RacingCarService(List<String> names) throws IllegalArgumentException {
+        CarNames carNames = new CarNames(names);
+        this.cars = new Cars(carNames);
+        this.carsCount = cars.getCountOfCars();
     }
 
     public Cars playOneGame() {
