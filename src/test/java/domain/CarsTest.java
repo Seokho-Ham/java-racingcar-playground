@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
@@ -12,7 +14,7 @@ public class CarsTest {
 
     @BeforeEach
     void beforeEach() {
-        CarNames names = new CarNames("coco,dodo,bobo");
+        CarNames names = new CarNames(Arrays.asList("coco,dodo,bobo"));
         cars = new Cars(names);
     }
 
@@ -27,9 +29,9 @@ public class CarsTest {
     @Test
     @DisplayName("Car들을 이동시키는 테스트")
     void moveCars() {
-        cars.moveCars(new RandomNumbers(4,5,6));
+        cars.moveCars();
         cars.getCars().stream().forEach(s->{
-            assertThat(s.getPosition()).isEqualTo(1);
+            assertThat(s.getPos()).isEqualTo(1);
         });
     }
 }
