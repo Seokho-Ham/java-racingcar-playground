@@ -1,28 +1,27 @@
 package domain;
 
 public class Car {
-
+    private static final int MOVE_POINT = 4;
     private final CarName carName;
     private Position pos;
-    private String strPos;
 
     public Car(CarName name) {
         this.carName = name;
         this.pos = new Position(0);
-        this.strPos = "";
     }
 
     public String getCarName() {
         return carName.getName();
     }
 
-    public String getStrPos(){
-        return strPos;
+    public String getConvertedPos(){
+        return pos.convertPos();
     }
 
-    public void move() {
-        pos.movePos();
-        strPos+="-";
+    public void move(int randomNumber) {
+        if(randomNumber >= MOVE_POINT){
+            pos.movePos();
+        }
     }
 
 

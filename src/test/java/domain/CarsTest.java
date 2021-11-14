@@ -29,9 +29,9 @@ public class CarsTest {
     @Test
     @DisplayName("Car들을 이동시키는 테스트")
     void moveCars() {
-        cars.moveCars(new RandomNumbers(4,5,6));
+        cars.moveCars();
         cars.getCars().stream().forEach(s->{
-            assertThat(s.getPosition()).isEqualTo(1);
+            assertThat(s.getPos()).isEqualTo(1);
         });
     }
 }
