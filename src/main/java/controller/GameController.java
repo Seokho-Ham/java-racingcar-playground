@@ -66,7 +66,7 @@ public class GameController {
         return carNamesInput;
     }
 
-    private static void validateCarNamesInput(String names) throws IllegalArgumentException {
+    private void validateCarNamesInput(String names) throws IllegalArgumentException {
         if (names.length() == 0 || names.equals("")) {
             throw new IllegalArgumentException("입력값이 비어있습니다.");
         }
