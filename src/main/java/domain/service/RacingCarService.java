@@ -23,16 +23,13 @@ public class RacingCarService {
         cars.moveCars();
     }
 
-    public Cars getCars(){
-        return this.cars;
-    }
-
     public Map<String, String> getProgress(){
         Map<String, String> gameProgress = new HashMap<>();
 
         for(Car car : cars.getCars()){
             gameProgress.put(car.getCarName(), car.getConvertedPosition());
         }
+
         return gameProgress;
     }
 

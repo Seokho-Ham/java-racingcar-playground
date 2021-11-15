@@ -1,22 +1,22 @@
 package domain.racingcar;
 
 public class Position {
-    private static final String MOVED_DISTANCE = "-";
-    private int pos = 0;
+    private static final String MOVE_EXPRESSION = "-";
+    private int position = 0;
 
     public int getPosition() {
-        return pos;
+        return position;
     }
 
-    public void movePos() {
-        this.pos++;
+    public void movePosition() {
+        this.position++;
     }
 
     public String convertPosition() {
-        String convertedPos = "";
-        for (int i = 0; i < pos; i++) {
-            convertedPos += MOVED_DISTANCE;
+        String convertedPosition = "";
+        for (int i = 0; i < position; i++) {
+            convertedPosition += MOVE_EXPRESSION;
         }
-        return convertedPos;
+        return convertedPosition;
     }
 }

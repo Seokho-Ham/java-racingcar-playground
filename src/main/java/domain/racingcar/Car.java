@@ -3,11 +3,11 @@ package domain.racingcar;
 public class Car {
     private static final int MINIMUM_NUMBER_TO_MOVE = 4;
     private final CarName carName;
-    private Position pos;
+    private Position movedDistance;
 
     public Car(CarName name) {
         this.carName = name;
-        this.pos = new Position();
+        this.movedDistance = new Position();
     }
 
     public String getCarName() {
@@ -15,16 +15,16 @@ public class Car {
     }
 
     public int getCurrentPosition() {
-        return pos.getPosition();
+        return movedDistance.getPosition();
     }
 
     public String getConvertedPosition() {
-        return pos.convertPosition();
+        return movedDistance.convertPosition();
     }
 
     public void move(int randomNumber) {
         if (randomNumber >= MINIMUM_NUMBER_TO_MOVE) {
-            pos.movePos();
+            movedDistance.movePosition();
         }
     }
 
