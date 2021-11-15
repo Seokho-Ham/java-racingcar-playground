@@ -1,16 +1,15 @@
 package domain;
 
-
+import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class Cars {
     private RandomNumbers randomNumberCreator;
     private List<Car> cars;
 
-    public Cars(CarNames names) {
-        this.cars = names.getCarNames().stream().map(s->new Car(s)).collect(Collectors.toList());
+    public Cars(List<CarName> names) {
+        this.cars = names.stream().map(s->new Car(s)).collect(Collectors.toList());
         this.randomNumberCreator = new RandomNumbers();
     }
 
@@ -26,7 +25,6 @@ public class Cars {
     }
 
     public List<String> findWinners(){
-        int max = cars.stream().mapToInt(s->s.getPos()).max().orElseThrow(NoSuchElementException::new);
-        return cars.stream().filter(s->s.getPos() == max).map(s->s.getCarName()).collect(Collectors.toList());
+        return cars.stream().filter(s->s.getPos()==cars.stream().map(car->car.getPos()).max(Comparator.comparing(pos->pos)).get()).map(s->s.getCarName()).collect(Collectors.toList());
     }
 }

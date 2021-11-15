@@ -1,7 +1,7 @@
 package domain;
 
 public class Position {
-    private static final String HYPHEN = "-";
+    private static final String MOVED_DISTANCE = "-";
     private int pos;
 
     public Position(int pos) {
@@ -18,7 +18,7 @@ public class Position {
     public String convertPos(){
         String convertedPos = "";
         for(int i=0; i<pos; i++){
-            convertedPos+= HYPHEN;
+            convertedPos+= MOVED_DISTANCE;
         }
         return convertedPos;
     }
