@@ -30,12 +30,10 @@ public class GameController {
         RacingCarService service = new RacingCarService(carNames);
         for (int i = 0; i < repetitionNumber; i++) {
             service.playOneGame();
-            String progressMessage = progressResultMessageCreator.makeProgressMessage(service.getCars());
-            ov.printMsg(progressMessage);
+            ov.printMsg(progressResultMessageCreator.makeProgressMessage(service.getProgress()));
         }
 
-        String gameResult = progressResultMessageCreator.makeResultMessage(service.getWinnerNames());
-        ov.printMsg(gameResult);
+        ov.printMsg(progressResultMessageCreator.makeResultMessage(service.getWinnerNames()));
     }
 
     private int getRepetitionNumber() {

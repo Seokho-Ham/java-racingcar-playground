@@ -1,14 +1,14 @@
 package domain;
 
 import java.util.List;
+import java.util.Map;
 
 public class ProgressResultMessageCreator {
-    public String makeProgressMessage(Cars cars){
+    public String makeProgressMessage(Map<String,String> singleGameProgress){
         String progressMessage = "";
 
-        for(Car car : cars.getCars()){
-            String progress = car.getConvertedPos();
-            progressMessage += car.getCarName() + " :" + progress + "\n";
+        for(Map.Entry<String, String> carProgress : singleGameProgress.entrySet()){
+            progressMessage += carProgress.getKey() + " : " + carProgress.getValue() + "\n";
         }
 
         return progressMessage;

@@ -1,8 +1,8 @@
-package domain;
+package utils;
 
 import java.util.Random;
 
-public class RandomNumbers {
+public class RandomNumberUtils {
     private final int MAX = 9;
 
     public int makeRandomNumber() {

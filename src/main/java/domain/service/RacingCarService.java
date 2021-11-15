@@ -1,10 +1,13 @@
 package domain.service;
 
-import domain.CarName;
-import domain.Cars;
+import domain.racingcar.Car;
+import domain.racingcar.CarName;
+import domain.racingcar.Cars;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -22,6 +25,15 @@ public class RacingCarService {
 
     public Cars getCars(){
         return this.cars;
+    }
+
+    public Map<String, String> getProgress(){
+        Map<String, String> gameProgress = new HashMap<>();
+
+        for(Car car : cars.getCars()){
+            gameProgress.put(car.getCarName(), car.getConvertedPosition());
+        }
+        return gameProgress;
     }
 
     public List<String> getWinnerNames(){
