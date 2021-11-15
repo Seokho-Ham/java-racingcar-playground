@@ -16,12 +16,14 @@ public class ConsoleInputView implements InputView {
     @Override
     public int getNumberInput() throws InputMismatchException {
         int numberInput;
-        try{
+
+        try {
             numberInput = sc.nextInt();
-        }catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
             sc.next();
             throw new InputMismatchException("숫자를 입력해주세요.");
         }
+
         return numberInput;
     }
 
