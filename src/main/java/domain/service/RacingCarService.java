@@ -1,46 +1,39 @@
 package domain.service;
 
-import domain.Car;
-import domain.CarNames;
-import domain.Cars;
-import domain.RandomNumbers;
+import domain.racingcar.Car;
+import domain.racingcar.CarName;
+import domain.racingcar.Cars;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class RacingCarService {
     private final Cars cars;
-    private final int carsCount;
 
-    public RacingCarService(CarNames names) throws IllegalArgumentException {
-        this.cars = new Cars(names);
-        this.carsCount = names.getNames().size();
-
+    public RacingCarService(String carNames) throws IllegalArgumentException {
+        List<CarName> carNameList = Arrays.stream(carNames.split(",")).map(s -> new CarName(s)).collect(Collectors.toList());
+        this.cars = new Cars(carNameList);
     }
 
-    public Cars playOneGame() {
-        cars.moveCars(new RandomNumbers(carsCount));
-        return cars;
+    public void playOneGame() {
+        cars.moveCars();
     }
 
-    public String findWinners(){
-        int max = 0;
-        for(Car car : cars.getCars()){
-            if(max < car.getPos()){
-                max = car.getPos();
-            }
-        }
-        List<String> winners = new ArrayList<>();
+    public Map<String, String> getProgress(){
+        Map<String, String> gameProgress = new HashMap<>();
 
         for(Car car : cars.getCars()){
-            if(car.getPos() == max){
-                winners.add(car.getCarName());
-            }
+            gameProgress.put(car.getCarName(), car.getConvertedPosition());
         }
 
-        return String.join(",",winners);
+        return gameProgress;
     }
 
-
+    public List<String> getWinnerNames(){
+        return cars.findWinners();
+    }
 }

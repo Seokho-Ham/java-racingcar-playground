@@ -1,8 +1,15 @@
 package domain;
 
+import domain.racingcar.Car;
+import domain.racingcar.CarName;
+import domain.racingcar.Cars;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,8 +19,8 @@ public class CarsTest {
 
     @BeforeEach
     void beforeEach() {
-        CarNames names = new CarNames("coco,dodo,bobo");
-        cars = new Cars(names);
+        List<CarName> carNames = Arrays.asList("coco,dodo,bobo").stream().map(s->new CarName(s)).collect(Collectors.toList());
+        cars = new Cars(carNames);
     }
 
     @Test
@@ -27,9 +34,9 @@ public class CarsTest {
     @Test
     @DisplayName("Car들을 이동시키는 테스트")
     void moveCars() {
-        cars.moveCars(new RandomNumbers(4,5,6));
+        cars.moveCars();
         cars.getCars().stream().forEach(s->{
-            assertThat(s.getPosition()).isEqualTo(1);
+            assertThat(s.getPos()).isEqualTo(1);
         });
     }
 }

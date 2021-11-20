@@ -4,8 +4,8 @@ public interface OutputView {
 
     void printMsg(String msg);
 
-    void printProgress(String msg);
+    void askCarNames();
 
-    void printResult(String msg);
+    void askRepetitionNumber();
 
 }
