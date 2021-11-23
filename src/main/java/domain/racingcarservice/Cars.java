@@ -23,9 +23,9 @@ public class Cars {
         return Arrays.stream(carNames.split(",")).collect(Collectors.toList());
     }
 
-    public Map<String, String> getCurrentPositions(){
+    public Map<String, String> getCurrentPositions() {
         Map<String, String> currentPositions = new HashMap<>();
-        cars.stream().forEach(s->{
+        cars.stream().forEach(s -> {
             currentPositions.put(s.getCarName(), s.getPositionInExpression());
         });
         return currentPositions;

@@ -7,7 +7,7 @@ public class GameService {
     private int repeatTimes;
     private RacingCarService racingCarService;
 
-    public void setCarNames(String carNames) throws IllegalArgumentException{
+    public void setCarNames(String carNames) throws IllegalArgumentException {
         this.racingCarService = new RacingCarService(carNames);
     }
 
@@ -15,18 +15,18 @@ public class GameService {
         this.repeatTimes = repeatTimes;
     }
 
-    public void runGame(){
-        for(int i=0; i<this.repeatTimes; i++){
+    public void runGame() {
+        for (int i = 0; i < this.repeatTimes; i++) {
             racingCarService.startSingleRace();
             gameProgress += racingCarService.getProgressByString() + "\n";
         }
     }
 
-    public String getGameProgress(){
+    public String getGameProgress() {
         return this.gameProgress;
     }
 
-    public String getWinnersNames(){
+    public String getWinnersNames() {
         return racingCarService.getWinners();
     }
 }

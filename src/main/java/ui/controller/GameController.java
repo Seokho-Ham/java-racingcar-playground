@@ -12,10 +12,10 @@ public class GameController {
     private static final InputView inputView = new ConsoleInputView();
     private static final OutputView outputView = new ConsoleOutputView();
 
-    public void run(){
+    public void run() {
         GameService service = new GameService();
         outputView.askCarNames();
-        while(true){
+        while (true) {
             try {
                 service.setCarNames(inputView.getInput());
                 break;
@@ -24,7 +24,7 @@ public class GameController {
             }
         }
         outputView.askRepeatTimes();
-        while(true){
+        while (true) {
             try {
                 service.setRepeatTimes(inputView.getNumberInput());
                 break;

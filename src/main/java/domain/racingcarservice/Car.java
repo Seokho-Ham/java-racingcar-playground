@@ -26,9 +26,9 @@ public class Car {
         return this.position.getPosition();
     }
 
-    public String getPositionInExpression(){
+    public String getPositionInExpression() {
         StringBuilder currentPosition = new StringBuilder("");
-        for(int i=0; i<this.position.getPosition(); i++){
+        for (int i = 0; i < this.position.getPosition(); i++) {
             currentPosition.append(POSITION_EXPRESSION);
         }
         return currentPosition.toString();
@@ -38,7 +38,7 @@ public class Car {
         if (name.length() > CARNAME_MAXLENGTH) {
             throw new IllegalArgumentException("이름의 길이는 5자 이하여야 합니다.");
         }
-        if (name.length()<1) {
+        if (name.length() < 1) {
             throw new IllegalArgumentException("이름은 최소 1자 이상이어야 합니다.");
         }
     }
