@@ -1,26 +1,59 @@
-## [NEXTSTEP 플레이그라운드의 미션 진행 과정](https://github.com/next-step/nextstep-docs/blob/master/playground/README.md)
+## 자동차 경주 게임 설계
 
----
-## 학습 효과를 높이기 위해 추천하는 미션 진행 방법
+### 패키지 구조
 
----
-1. 피드백 강의 전까지 미션 진행 
-> 피드백 강의 전까지 혼자 힘으로 미션 진행. 미션을 진행하면서 하나의 작업이 끝날 때 마다 add, commit
-> 예를 들어 다음 숫자 야구 게임의 경우 0, 1, 2단계까지 구현을 완료한 후 push
-
-![mission baseball](https://raw.githubusercontent.com/next-step/nextstep-docs/master/playground/images/mission_baseball.png)
-
----
-2. 피드백 앞 단계까지 미션 구현을 완료한 후 피드백 강의를 학습한다.
-
----
-3. Git 브랜치를 master 또는 main으로 변경한 후 피드백을 반영하기 위한 새로운 브랜치를 생성한 후 처음부터 다시 미션 구현을 도전한다.
-
+```bash
+|- domain
+    |- gameservice
+    |- racingcarservice
+      |- CarService
+      |- Cars
+      |- Car
+      |- CarName
+      |- Position
+|- ui
+    |- controller
+      |- Application
+      |- GameController
+    |- interfaces
+      |- InputView
+      |- OutputView
+    |- view
+      |- ConsoleInputView
+      |- ConsoleOutputView
+|- utils
+  |- RandomNumberUtil
 ```
-git branch -a // 모든 로컬 브랜치 확인
-git checkout master // 기본 브랜치가 master인 경우
-git checkout main // 기본 브랜치가 main인 경우
 
-git checkout -b 브랜치이름
-ex) git checkout -b apply-feedback
-```
+<br>
+
+### 테스트 해볼 항목
+
+1. 자동차의 이동
+   - 입력받은 전략에 따라 이동하는가?
+2. 자동차 이름 검증
+   - 5자 이하일때만 생성이 되는가?
+   - 5자 초과거나 빈 문자열의 경우 에러 메세지를 발생시키나?
+3. 반복 회수 검증
+   - 숫자가 아닌 값이 들어올 경우 익셉션을 발생 시키는가?
+
+<br>
+
+### 구동 과정
+
+1. 사용자가 앱을 실행 시킨다.
+2. Game Controller 가 실행된다.
+   - GameService 객체가 생성된다.
+   - InputView를 통해 자동차 이름과 반복횟수를 입력받는다.
+   - 자동차 이름과 반복 횟수를 멤버변수로 설정한다.
+3. GameService에서 반복 횟수만큼 CarService의 게임 실행 메서드를 실행한다.
+   - Strategy를 인자로 받아 동작하도록 한다.
+   - Strategy에 따라 자동차는 이동하던지 멈춘다.
+4. GameService에서 각 회차에 따른 결과를 반환 Controller에게 넘겨줘서 출력한다.
+5. CarGameService를 통해 결과를 받아와서 출력하고 게임을 종료한다.
+   
+
+### 코딩 컨벤션
+
+- 원시값들을 포장할 것.
+- 일급 컬렉션을 사용할 것.
